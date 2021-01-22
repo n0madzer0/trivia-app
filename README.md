@@ -1,4 +1,7 @@
 # trivia-app
+Use for reference
+https://github.com/nicejade/awesome-vue-cli3-example
+https://cli.vuejs.org/guide/css.html
 
 ## Project setup
 ```
