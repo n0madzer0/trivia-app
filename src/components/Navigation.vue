@@ -1,6 +1,6 @@
 <template>
   <nav id="nav-items" class="nav-items">
-    <router-link class="nav-item" to="Home">Home</router-link>
+    <router-link class="nav-item" to="/">Home</router-link>
     <router-link class="nav-item" to="About">About</router-link>
     <router-link class="nav-item" to="Trivia">Trivia</router-link>
     <a href="javascript:void(0);" class="icon" v-on:click="toggleMenu()">
@@ -11,7 +11,6 @@
 
 <script>
 export default {
-  name: "Navigation",
   data() {
     return {};
   },
@@ -29,25 +28,31 @@ export default {
 </script>
 <style lang="scss" scoped>
 .nav-items {
-  background-color: #333;
+  background-color: $color-1;
   overflow: hidden;
 
   .nav-item {
     float: left;
-    color: #f2f2f2;
+    color: $color-5;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+    font-weight: bold;
+    border-bottom: 5px $color-1 solid;
+
 
     &:hover {
-      background-color: #ddd;
-      color: black;
+      box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
+      border-bottom: 5px $color-2 solid;
+      color: $color-5;
     }
 
     &.active {
-      background-color: #4caf50;
-      color: white;
+      background-color: $color-2;
+      color: $color-1;
+      border-bottom: 5px $color-2 solid;
+
     }
   }
 
@@ -64,7 +69,7 @@ export default {
   .nav-items a.icon {
     float: right;
     display: block;
-    color: white;
+    color: $color-5;
     margin-right: 10px;
     margin-top: 6px;
   }

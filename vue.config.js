@@ -8,7 +8,7 @@ function addStyleResource(rule) {
     .options({
       patterns: [
         path.resolve(__dirname, './src/assets/styles/variables.scss'),
-        path.resolve(__dirname, './src/assets/styles/mixins.scss')
+        // path.resolve(__dirname, './src/assets/styles/mixins.scss')
       ],
     })
 }
@@ -19,4 +19,11 @@ module.exports = {
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
     types.forEach(type => addStyleResource(config.module.rule('sass').oneOf(type)))
   },
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: `@import "@/assets/styles/variables.scss";`
+      }
+    }
+  }
 }

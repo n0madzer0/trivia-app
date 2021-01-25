@@ -1,15 +1,25 @@
 <template>
   <div class="home">
-    <h2>Home</h2>
+    <StartCard/>
+    <!-- <QuestionCard/> -->
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+import StartCard from '@/components/StartCard';
+// import QuestionCard from '@/components/QuestionCard';
 
 export default {
-  name: 'Home',
   components: {
+    // QuestionCard,
+    StartCard
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .home {
+    display: flex;
+    justify-content: center;
+  }
+</style>
