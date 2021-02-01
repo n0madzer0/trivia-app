@@ -1,72 +1,47 @@
 <template>
-  <div class="card-group">
-    <transition-group :name="back ? 'slideback' : 'slide'">
-      <div v-if="currentIndex === 0">
-        <div class="card-main">
-          <div class="card-container">
-            <div class="card-header">
-              <h2>Welcome to Trivia</h2>
-            </div>
-            <div class="card-body">
-              <span>I'm glad you are here. I've spent tireless hours creating this trivia game and writing out trivia questions (not really...)</span>
-              <div>
-                Instructions: Always multiple choice with 4 options
-                  You will be given 2 minutes
-                  Do not click back button on browser or you will be booted
-              </div>
-              <div>
-                Rules:
-              </div>
-            </div>
-            <div class="card-footer"></div>
-            <button @click="next()">Get Started</button>
-          </div>
+  <div class="card-main">
+    <div class="card-container">
+      <div class="card-header">
+        <h2>Welcome to Trivia</h2>
+      </div>
+      <div class="card-body">
+        <span
+          >I'm glad you are here. I've spent tireless hours creating this trivia
+          game and writing out trivia questions (not really...)</span
+        >
+        <div>
+          Instructions: Always multiple choice with 4 options You will be given
+          2 minutes Do not click back button on browser or you will be booted
         </div>
+        <div>Rules:</div>
       </div>
-      <div v-if="currentIndex === 1">
-        <OptionsCard />
-      </div>
-      <div v-if="currentIndex === 2">
-        <div class="card-main">
-          <div class="card-container">
-            <div class="card-header">
-              <h2>Question #{{ currentIndex }}</h2>
-            </div>
-            <div class="card-body">
-              <span>dkj;afksdjflas;df;jsdakfljsd;fkjds;ldfkdasj;l</span>
-            </div>
-            <div class="card-footer"></div>
-          </div>
-        </div>
-      </div>
-    </transition-group>
-    <button @click="prev()">prev</button>
-    <button @click="next()">next</button>
-    <!-- <button @click="$router.push('about')">Get Started</button> -->
-    <!-- <router-link to="/foo" tag="button">Get Started</router-link> -->
+      <div class="card-footer"></div>
+      <button @click="next()">Let's Get Started!</button>
+    </div>
   </div>
+  <!-- <button @click="$router.push('about')">Get Started</button> -->
+  <!-- <router-link to="/foo" tag="button">Get Started</router-link> -->
 </template>
 
 <script>
-import OptionsCard from "@/components/OptionsCard";
+import { mapGetters } from "vuex";
 
 export default {
-  components: {
-    OptionsCard,
-  },
   data() {
     return {
       back: false,
-      currentIndex: 0,
     };
   },
   methods: {
     next() {
-      this.currentIndex++;
+      this.$store.dispatch("incrementCurrentIndex");
     },
     prev() {
-      this.currentIndex--;
+      this.$store.dispatch("decrementCurrentIndex");
     },
+  },
+  computed: {
+    ...mapGetters(["currentIndex"]),
   },
 };
 </script>

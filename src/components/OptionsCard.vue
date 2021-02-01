@@ -2,11 +2,11 @@
   <div class="card-main">
     <div class="card-container">
       <div class="card-header">
-        <h2>Select your options</h2>
+        <h2>Select your options {{ currentIndex }}</h2>
       </div>
       <div class="card-body">
         <span></span>
-        <div class="difficultySelector" style="width:200px;">
+        <div class="difficultySelector" style="width: 200px">
           <label for="selectDifficulty">Difficulty:</label>
           <select id="selectDifficulty" name="difficulty" v-model="difficulty">
             <option disabled value="">--Choose a difficulty--</option>
@@ -15,9 +15,14 @@
             <option value="Hard">Hard</option>
           </select>
         </div>
-        <div class="categorySelector" style="width: 200px;">
+        <div class="categorySelector" style="width: 200px">
           <label for="selectCategories">Categories:</label>
-          <select multiple id="selectCategories" name="categories" v-model="categories">
+          <select
+            multiple
+            id="selectCategories"
+            name="categories"
+            v-model="categories"
+          >
             <option disabled value="">--Choose categories--</option>
             <option value="Sports">Sports</option>
             <option value="History">History</option>
@@ -26,6 +31,7 @@
         </div>
       </div>
       <div class="card-footer">
+        <button @click="prev()">prev</button>
         <button @click="next()">Lets gooooo</button>
       </div>
     </div>
@@ -33,6 +39,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
@@ -40,13 +48,19 @@ export default {
       categories: [],
     };
   },
-    methods: {
+  methods: {
     next() {
-      this.currentIndex++;
+      this.$store.dispatch("incrementCurrentIndex");
     },
     prev() {
-      this.currentIndex--;
+      this.$store.dispatch("decrementCurrentIndex");
     },
+  },
+  computed: {
+    ...mapGetters(["currentIndex"]),
+  },
+  mounted() {
+    console.log("getCategories and difficulties");
   },
 };
 </script>

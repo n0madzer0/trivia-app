@@ -3,7 +3,7 @@
     <div class="card-main">
       <div class="card-container">
         <div class="card-header">
-          <h2>Question #{{ currentIndex }}</h2>
+          <h2>Question #{{ questionNumber }}</h2>
         </div>
         <div class="card-body">
           <span>dkj;afksdjflas;df;jsdakfljsd;fkjds;ldfkdasj;l</span>
@@ -18,22 +18,24 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
       back: false,
-      currentIndex: 0,
     };
   },
   methods: {
     next() {
-      this.back = false;
-      this.currentIndex++;
+      this.$store.dispatch("incrementQuestionNumber");
     },
     prev() {
-      this.back = true;
-      this.currentIndex--;
+      this.$store.dispatch("decrementQuestionNumber");
     },
+  },
+  computed: {
+    ...mapGetters(['questionNumber'])
   },
 };
 </script>

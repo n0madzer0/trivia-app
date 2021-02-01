@@ -3,14 +3,14 @@
     <div class="card-main">
       <div class="card-container">
         <div class="card-header">
-          <h2>Question #{{ currentIndex }}</h2>
+          <h2>Loading Card{{ currentIndex }}</h2>
         </div>
         <div class="card-body">
           <span>dkj;afksdjflas;df;jsdakfljsd;fkjds;ldfkdasj;l</span>
         </div>
         <div class="card-footer">
-          <button @click="prev()">prev</button>
-          <button @click="next()">next</button>
+          <button @click="prev()">I want to change something</button>
+          <button @click="next()">Are you ready?</button>
         </div>
       </div>
     </div>
@@ -18,22 +18,24 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
       back: false,
-      currentIndex: 0,
     };
   },
   methods: {
     next() {
-      this.back = false;
-      this.currentIndex++;
+      this.$store.dispatch("incrementCurrentIndex");
     },
     prev() {
-      this.back = true;
-      this.currentIndex--;
+      this.$store.dispatch("decrementCurrentIndex");
     },
+  },
+  computed: {
+    ...mapGetters(["currentIndex"]),
   },
 };
 </script>
