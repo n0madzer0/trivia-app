@@ -19,6 +19,8 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { getQuestions } from "@/services/TriviaApi";
+
 
 export default {
   data() {
@@ -29,10 +31,18 @@ export default {
   methods: {
     next() {
       this.$store.dispatch("incrementCurrentIndex");
+      getQuestions();
     },
     prev() {
       this.$store.dispatch("decrementCurrentIndex");
     },
+    getQuestions() {
+      const data = getQuestions("token", 10);
+      if(data) {
+        console.log(data);
+        return data;
+      }
+    }
   },
   computed: {
     ...mapGetters(["currentIndex"]),

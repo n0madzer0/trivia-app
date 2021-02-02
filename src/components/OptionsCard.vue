@@ -7,7 +7,7 @@
       <div class="card-body">
         <span></span>
         <div class="difficultySelector" style="width: 200px">
-          <label for="selectDifficulty">Difficulty:</label>
+          <label for="selectDifficulty">Select Difficulty:</label>
           <select id="selectDifficulty" name="difficulty" v-model="difficulty">
             <option disabled value="">--Choose a difficulty--</option>
             <option value="Easy">Easy</option>
@@ -16,18 +16,23 @@
           </select>
         </div>
         <div class="categorySelector" style="width: 200px">
-          <label for="selectCategories">Categories:</label>
-          <select
-            multiple
-            id="selectCategories"
-            name="categories"
-            v-model="categories"
-          >
+          <label for="selectCategories">Select Category:</label>
+          <select id="selectCategories" name="categories" v-model="categories">
             <option disabled value="">--Choose categories--</option>
-            <option value="Sports">Sports</option>
-            <option value="History">History</option>
-            <option value="Art">Art</option>
+            <option v-for="(item, key) in categories" :key="key" :value="key">
+              {{ item }}
+            </option>
           </select>
+          <h3>{{ categories }}</h3>
+        </div>
+        <div class="sessionToken">
+          <input type="checkbox" v-model="isChecked" />
+          <input
+            type="text"
+            v-model="sessionToken"
+            :disabled="isChecked"
+            placeholder="disabled if box checked"
+          />
         </div>
       </div>
       <div class="card-footer">
@@ -40,6 +45,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { getCategories, getSessionToken } from "@/services/TriviaApi";
 
 export default {
   data() {
@@ -55,12 +61,26 @@ export default {
     prev() {
       this.$store.dispatch("decrementCurrentIndex");
     },
+    getCategories() {
+      const data = getCategories();
+      if (data) {
+        return data;
+      }
+    },
+    getSessionToken() {
+      const data = getSessionToken();
+      if (data) {
+        console.log(data);
+        return data;
+      }
+    },
   },
   computed: {
     ...mapGetters(["currentIndex"]),
   },
   mounted() {
-    console.log("getCategories and difficulties");
+    getSessionToken();
+    getCategories();
   },
 };
 </script>
@@ -89,6 +109,9 @@ export default {
 
     .card-body {
       padding: 10px;
+    }
+
+    .card-footer {
     }
   }
 }

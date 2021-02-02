@@ -3,7 +3,8 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     currentIndex: 0,
-    questionNumber: 1
+    questionNumber: 1,
+    questions: []
   },
   actions: {
     incrementCurrentIndex(context) {
