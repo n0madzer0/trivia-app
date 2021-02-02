@@ -2,7 +2,7 @@
   <div class="card-main">
     <div class="card-container">
       <div class="card-header">
-        <h2>Select your options {{ currentIndex }}</h2>
+        <h2>Select your game options</h2>
       </div>
       <div class="card-body">
         <span></span>
@@ -27,61 +27,46 @@
         </div>
         <div class="sessionToken">
           <input type="checkbox" v-model="isChecked" />
-          <input
-            type="text"
-            v-model="sessionToken"
-            :disabled="isChecked"
-            placeholder="disabled if box checked"
-          />
+          <input type="text" v-model="sessionToken" :disabled="isChecked" placeholder="disabled if box checked" />
         </div>
       </div>
       <div class="card-footer">
-        <button @click="prev()">prev</button>
-        <button @click="next()">Lets gooooo</button>
+        <button @click="previousCard">Go back</button>
+        <button @click="nextCard">Lets gooooo</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
 import { getCategories, getSessionToken } from "@/services/TriviaApi";
 
 export default {
-  data() {
-    return {
-      difficulty: "",
-      categories: [],
-    };
-  },
   methods: {
-    next() {
-      this.$store.dispatch("incrementCurrentIndex");
-    },
-    prev() {
-      this.$store.dispatch("decrementCurrentIndex");
-    },
-    getCategories() {
-      const data = getCategories();
-      if (data) {
-        return data;
-      }
-    },
-    getSessionToken() {
-      const data = getSessionToken();
-      if (data) {
-        console.log(data);
-        return data;
-      }
-    },
+    ...mapActions(["previousCard, nextCard"]),
+    // getCategories() {
+    //   const data = getCategories();
+    //   if (data) {
+    //     return data;
+    //   }
+    // },
+    // getSessionToken() {
+    //   const data = getSessionToken();
+    //   if (data) {
+    //     console.log(data);
+    //     return data;
+    //   }
+    // }
   },
   computed: {
-    ...mapGetters(["currentIndex"]),
+    ...mapState([]),
+    ...mapGetters(["currentIndex"])
   },
   mounted() {
     getSessionToken();
     getCategories();
-  },
+  }
 };
 </script>
 

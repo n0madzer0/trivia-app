@@ -1,27 +1,32 @@
 <template>
   <div class="card-question-group">
+    <transition-group>
       <div class="card-main">
         <div class="card-container">
           <div class="card-header">
-            <h2>Question #{{ questionNumber }}</h2>
+            <h2>This is the end</h2>
           </div>
           <div class="card-body">
             <span>dkj;afksdjflas;df;jsdakfljsd;fkjds;ldfkdasj;l</span>
           </div>
           <div class="card-footer">
-            <button @click="submitAnswer()">Submit Answer</button>
+            <!-- <button @click="submitAnswer()">Submit Answer</button> -->
           </div>
         </div>
       </div>
+    </transition-group>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters, mapState } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
+  data() {
+    return {
+    };
+  },
   methods: {
-    ...mapActions(["nextCard"]),
     submitAnswer() {
       this.$store.dispatch("incrementQuestionNumberAction");
       if(this.questionNumber === 4) {
@@ -31,8 +36,7 @@ export default {
     },
   },
   computed: {
-    ...mapState([]),
-    ...mapGetters(["currentIndex", "questionNumber"])
+    ...mapGetters(["questionNumber", "currentIndex"])
   }
 };
 </script>

@@ -1,52 +1,59 @@
 <template>
-  <transition-group>
-    <div class="card-main">
-      <div class="card-container">
-        <div class="card-header">
-          <h2>Loading Card{{ currentIndex }}</h2>
-        </div>
-        <div class="card-body">
-          <span>dkj;afksdjflas;df;jsdakfljsd;fkjds;ldfkdasj;l</span>
-        </div>
-        <div class="card-footer">
-          <button @click="prev()">I want to change something</button>
-          <button @click="next()">Are you ready?</button>
-        </div>
+  <div class="card-main">
+    <div class="card-container">
+      <div class="card-header">
+        <h2>Loading you questions</h2>
+      </div>
+      <div class="card-body">
+        <span>dkj;afksdjflas;df;jsdakfljsd;fkjds;ldfkdasj;l</span>
+      </div>
+      <div class="card-footer">
+        <button @click="previousCard">I want to change something</button>
+        <button @click="nextCard">Are you ready?</button>
       </div>
     </div>
-  </transition-group>
+  </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
 import { getQuestions } from "@/services/TriviaApi";
-
 
 export default {
   data() {
     return {
-      back: false,
     };
   },
   methods: {
-    next() {
-      this.$store.dispatch("incrementCurrentIndex");
-      getQuestions();
-    },
-    prev() {
-      this.$store.dispatch("decrementCurrentIndex");
-    },
+    ...mapActions(["nextCard"]),
     getQuestions() {
       const data = getQuestions("token", 10);
-      if(data) {
-        console.log(data);
+      if (data) {
         return data;
       }
     }
   },
   computed: {
-    ...mapGetters(["currentIndex"]),
-  },
+    ...mapState([]),
+    ...mapGetters(["currentIndex"])
+  }
+  // mounted() {
+  //   getSessionToken()
+  //     .then(response => {
+  //       this.sessionToken = response;
+  //       this.loading = false;
+  //       this.timerCount = 30; //Need to track token expiration and time to answer question
+  //     })
+  //     .then(response => {
+  //       api.getQuestions(response, 9).then(response => {
+  //         this.apiResult = response;
+  //         this.mapResults(response);
+  //       });
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  // },
 };
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="card-group">
-      <transition-group :name="back ? 'slideback' : 'slide'">
+      <transition-group :name="'slide'">
         <div v-if="currentIndex === 0">
           <StartCard />
         </div>
@@ -14,11 +14,10 @@
         <div v-if="currentIndex === 3">
           <QuestionCard />
         </div>
+        <div v-if="currentIndex === 4">
+          <EndCard />
+        </div>
       </transition-group>
-      <!-- <button @click="prev()">prev</button>
-      <button @click="next()">next</button> -->
-      <!-- <button @click="$router.push('about')">Get Started</button> -->
-      <!-- <router-link to="/foo" tag="button">Get Started</router-link> -->
     </div>
   </div>
 </template>
@@ -29,6 +28,7 @@ import StartCard from "@/components/StartCard";
 import OptionsCard from "@/components/OptionsCard";
 import LoadingCard from "@/components/LoadingCard";
 import QuestionCard from "@/components/QuestionCard";
+import EndCard from "@/components/EndCard";
 
 export default {
   components: {
@@ -36,11 +36,12 @@ export default {
     OptionsCard,
     LoadingCard,
     QuestionCard,
+    EndCard
   },
   methods: {},
   computed: {
-    ...mapGetters(["currentIndex"]),
-  },
+    ...mapGetters(["currentIndex"])
+  }
 };
 </script>
 
@@ -51,6 +52,8 @@ export default {
 
   .card-group {
     //START - Transition Animations
+    //slide = exit left (forward)
+    //slideback = exit right (backwards)
     .slide-leave-active,
     .slide-enter-active {
       transition: 1s;

@@ -9,6 +9,12 @@ https://stackoverflow.com/questions/42866098/create-sliding-left-effect-using-vu
 Routing example:
 https://stackoverflow.com/questions/45638239/enclosing-a-router-link-tag-in-a-button-in-vuejs/58495529#58495529
 
+Vuex Basics:
+https://www.sitepoint.com/vuex-beginner-guide/
+
+Vuex/Vue best practices:
+https://www.telerik.com/blogs/10-good-practices-building-maintaining-large-vuejs-projects
+
 ## Project setup
 ```
 npm install

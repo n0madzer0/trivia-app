@@ -5,44 +5,29 @@
         <h2>Welcome to Trivia</h2>
       </div>
       <div class="card-body">
-        <span
-          >I'm glad you are here. I've spent tireless hours creating this trivia
-          game and writing out trivia questions (not really...)</span
-        >
+        <span>I'm glad you are here. I've spent tireless hours creating this trivia game and writing out trivia questions (not really...)</span>
         <div>
-          Instructions: Always multiple choice with 4 options You will be given
-          2 minutes Do not click back button on browser or you will be booted
+          Instructions: Always multiple choice with 4 options You will be given 2 minutes Do not click back button on browser or you will be booted
         </div>
         <div>Rules:</div>
       </div>
       <div class="card-footer"></div>
-      <button @click="next()">Let's Get Started!</button>
+      <button @click="nextCard">Let's Get Started!</button>
     </div>
   </div>
-  <!-- <button @click="$router.push('about')">Get Started</button> -->
-  <!-- <router-link to="/foo" tag="button">Get Started</router-link> -->
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
 
 export default {
-  data() {
-    return {
-      back: false,
-    };
-  },
   methods: {
-    next() {
-      this.$store.dispatch("incrementCurrentIndex");
-    },
-    prev() {
-      this.$store.dispatch("decrementCurrentIndex");
-    },
+    ...mapActions(["nextCard"]),
   },
   computed: {
-    ...mapGetters(["currentIndex"]),
-  },
+    ...mapState([]),
+    ...mapGetters(["currentIndex"])
+  }
 };
 </script>
 
