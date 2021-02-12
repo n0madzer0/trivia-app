@@ -69,7 +69,6 @@ export default {
       border-bottom: 5px solid $color-2;
       max-height: 50px;
       justify-content: center;
-
     }
 
     .card-body {
@@ -84,6 +83,8 @@ export default {
         right: 0;
         margin-bottom: 20px;
         margin-right: 10px;
+        padding: 10px;
+        border-radius: 6px;
       }
     }
   }
