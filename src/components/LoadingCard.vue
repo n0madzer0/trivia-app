@@ -37,23 +37,6 @@ export default {
     ...mapState([]),
     ...mapGetters(["currentIndex"])
   }
-  // mounted() {
-  //   getSessionToken()
-  //     .then(response => {
-  //       this.sessionToken = response;
-  //       this.loading = false;
-  //       this.timerCount = 30; //Need to track token expiration and time to answer question
-  //     })
-  //     .then(response => {
-  //       api.getQuestions(response, 9).then(response => {
-  //         this.apiResult = response;
-  //         this.mapResults(response);
-  //       });
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // },
 };
 </script>
 

@@ -5,14 +5,21 @@
         <h2>Welcome to Trivia</h2>
       </div>
       <div class="card-body">
-        <span>I'm glad you are here. I've spent tireless hours creating this trivia game and writing out trivia questions (not really...)</span>
         <div>
-          Instructions: Always multiple choice with 4 options You will be given 2 minutes Do not click back button on browser or you will be booted
+          I'm glad you are here. I've spent tireless hours creating this trivia
+          game and writing out trivia questions (not really...)
+        </div>
+        <div>
+          Instructions: Always multiple choice with 4 options You will be given
+          2 minutes Do not click back button on browser or you will be booted
         </div>
         <div>Rules:</div>
       </div>
-      <div class="card-footer"></div>
-      <button @click="nextCard">Let's Get Started!</button>
+      <div class="card-footer">
+        <button class="next-button" @click="nextCard">
+          Let's Get Started!
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -26,60 +33,57 @@ export default {
   },
   computed: {
     ...mapState([]),
-    ...mapGetters(["currentIndex"])
-  }
+    ...mapGetters(["currentIndex"]),
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.card-group {
-  //START - Transition Animations
-  .slide-leave-active,
-  .slide-enter-active {
-    transition: 1s;
-  }
-  .slide-enter {
-    transform: translate(100%, 0);
-  }
-  .slide-leave-to {
-    transform: translate(-100%, 0);
-  }
-  .slideback-leave-active,
-  .slideback-enter-active {
-    transition: 1s;
-  }
-  .slideback-enter {
-    transform: translate(-100%, 0);
-  }
-  .slideback-leave-to {
-    transform: translate(100%, 0);
-  }
-  //END - Transition Animations
+.card-main {
+  margin-top: 100px;
+  width: 600px;
+  min-width: 400px;
+  height: 400px;
+  min-height: 400px;
+  box-shadow: 0px 0px 50px 15px $color-4;
+  transition: 0.3s;
+  border-radius: 6px;
+  background-color: $color-3;
 
-  .card-main {
-    margin-top: 100px;
-    width: 600px;
-    min-width: 400px;
-    height: 400px;
-    min-height: 400px;
-    box-shadow: 0px 0px 50px 15px $color-4;
-    transition: 0.3s;
-    border-radius: 6px;
-    background-color: $color-3;
+  &:hover {
+    box-shadow: 0px 0px 50px 30px $color-4;
+  }
+  .card-container {
+    padding: 2px 16px;
+    display: flex;
+    flex-direction: column;
+    flex-flow: wrap;
+    height: 100%;
 
-    &:hover {
-      box-shadow: 0px 0px 50px 30px $color-4;
+    > * {
+      width: 100%;
+      padding: 10px;
     }
-    .card-container {
-      padding: 2px 16px;
 
-      .card-header {
-        border-bottom: 5px solid $color-2;
-        padding: 10px;
-      }
+    .card-header {
+      border-bottom: 5px solid $color-2;
+      max-height: 50px;
+      justify-content: center;
 
-      .card-body {
-        padding: 10px;
+    }
+
+    .card-body {
+    }
+
+    .card-footer {
+      position: relative;
+
+      .next-button {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin-bottom: 20px;
+        margin-right: 10px;
       }
     }
   }

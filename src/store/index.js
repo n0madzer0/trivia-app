@@ -11,9 +11,12 @@ export default createStore({
     questionNumber: 1,
     questions: [],
     categories: [],
+    categorySelected: 0,
     totalQuestionCount: 10,
     sessionToken: "",
     previousCardEnabled: true,
+    difficulty: "easy",
+
   },
   // sychronous functions for changing state e.g. add, edit, delete
   // no business logic in mutations

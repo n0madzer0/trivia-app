@@ -1,18 +1,33 @@
 <template>
   <div class="card-question-group">
-      <div class="card-main">
-        <div class="card-container">
-          <div class="card-header">
-            <h2>Question #{{ questionNumber }}</h2>
-          </div>
-          <div class="card-body">
-            <span>dkj;afksdjflas;df;jsdakfljsd;fkjds;ldfkdasj;l</span>
-          </div>
-          <div class="card-footer">
-            <button @click="submitAnswer()">Submit Answer</button>
-          </div>
+    <div class="card-main">
+      <div class="card-container">
+        <div class="card-header">
+          <h2>Question #{{ questionNumber }}</h2>
+        </div>
+        <div class="card-body">
+          <p>How are you feeling today?</p>
+          <label>
+            <input type="radio" value="great" v-model="howAreYouFeeling" />
+            great
+          </label>
+          <label>
+            <input type="radio" value="wonderful" v-model="howAreYouFeeling" />
+            wonderful
+          </label>
+          <label>
+            <input type="radio" value="fantastic" v-model="howAreYouFeeling" />
+            fantastic
+          </label>
+          <p>
+            I am also feeling <em>{{ howAreYouFeeling }}</em> today.
+          </p>
+        </div>
+        <div class="card-footer">
+          <button @click="submitAnswer()">Submit Answer</button>
         </div>
       </div>
+    </div>
   </div>
 </template>
 
@@ -20,20 +35,18 @@
 import { mapActions, mapGetters, mapState } from "vuex";
 
 export default {
+  data() {
+    return {
+      howAreYouFeeling: ""
+    }
+  },
   methods: {
     ...mapActions(["nextCard"]),
-    submitAnswer() {
-      this.$store.dispatch("incrementQuestionNumberAction");
-      if(this.questionNumber === 4) {
-        console.log("Q4 increment index");
-        this.$store.dispatch("incrementCurrentIndexAction")
-      }
-    },
   },
   computed: {
     ...mapState([]),
-    ...mapGetters(["currentIndex", "questionNumber"])
-  }
+    ...mapGetters(["currentIndex", "questionNumber"]),
+  },
 };
 </script>
 

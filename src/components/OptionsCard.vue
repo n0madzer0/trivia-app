@@ -24,10 +24,10 @@
             </option>
           </select>
         </div>
-        <div class="sessionToken">
+        <!-- <div class="sessionToken">
           <input type="checkbox" v-model="isChecked" />
           <input type="text" v-model="sessionToken" :disabled="isChecked" placeholder="disabled if box checked" />
-        </div>
+        </div> -->
       </div>
       <div class="card-footer">
         <button @click="previousCard">Go back</button>
