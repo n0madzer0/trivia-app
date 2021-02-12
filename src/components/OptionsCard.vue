@@ -17,13 +17,12 @@
         </div>
         <div class="categorySelector" style="width: 200px">
           <label for="selectCategories">Select Category:</label>
-          <select id="selectCategories" name="categories" v-model="categories">
-            <option disabled value="">--Choose categories--</option>
-            <option v-for="(item, key) in categories" :key="key" :value="key">
-              {{ item }}
+          <select id="selectCategories" name="categories">
+            <option disabled value="">--Choose category--</option>
+            <option v-for="(item, key) in categories" :key="key" :value="item.id">
+              {{ item.name }}
             </option>
           </select>
-          <h3>{{ categories }}</h3>
         </div>
         <div class="sessionToken">
           <input type="checkbox" v-model="isChecked" />
@@ -40,32 +39,19 @@
 
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
-import { getCategories, getSessionToken } from "@/services/TriviaApi";
+import { getSessionToken } from "@/services/TriviaApi";
 
 export default {
   methods: {
-    ...mapActions(["previousCard, nextCard"]),
-    // getCategories() {
-    //   const data = getCategories();
-    //   if (data) {
-    //     return data;
-    //   }
-    // },
-    // getSessionToken() {
-    //   const data = getSessionToken();
-    //   if (data) {
-    //     console.log(data);
-    //     return data;
-    //   }
-    // }
+    ...mapActions(["previousCard", "nextCard", "getCategories"]),
   },
   computed: {
     ...mapState([]),
-    ...mapGetters(["currentIndex"])
+    ...mapGetters(["currentIndex", "categories"])
   },
   mounted() {
     getSessionToken();
-    getCategories();
+    this.getCategories();
   }
 };
 </script>

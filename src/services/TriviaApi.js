@@ -40,19 +40,8 @@ function getQuestions(token, amount) {
       console.log(error);
     });
 }
-   
-function getCategories() {
-  return axios
-    .get(baseUrl + "/api_category.php", {})
-    .then((response) => {
-      return response.data.trivia_categories;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
 
-export { getSessionToken, getQuestions, getCategories };
+export { getSessionToken, getQuestions };
 
 
 
