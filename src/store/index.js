@@ -15,8 +15,7 @@ export default createStore({
     totalQuestionCount: 10,
     sessionToken: "",
     previousCardEnabled: true,
-    difficulty: "easy",
-
+    difficultySelected: "easy",
   },
   // sychronous functions for changing state e.g. add, edit, delete
   // no business logic in mutations
@@ -38,6 +37,12 @@ export default createStore({
     },
     setCategories(state, categories) {
       state.categories = categories;
+    },
+    setSessionToken(state, token) {
+      state.sessionToken = token;
+    },
+    setQuestions(state, questions) {
+      state.questions = questions;
     },
   },
   //asynchronous functions that can call one or more mutation functions
@@ -62,12 +67,50 @@ export default createStore({
     previousCard({ commit }) {
       commit("decrementCurrentIndex");
     },
+    submitAnswer({ commit }) {
+      commit("incrementQuestionNumber");
+    },
+    //Token lasts for 6 hours
+    //Using the same token ensures no duplicated questions
+    getSessionToken({ commit }) {
+      axios
+        .get(baseUrl + "/api_token.php", {
+          params: {
+            command: "request",
+          },
+        })
+        .then((response) => {
+          commit("setSessionToken", response.data.token);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
     getCategories({ commit }) {
       axios
         .get(baseUrl + "/api_category.php")
         .then((response) => {
-          console.log(response.data.trivia_categories);
           commit("setCategories", response.data.trivia_categories);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    getQuestions({ commit }) {
+      axios
+        .get(baseUrl + "/api.php", {
+          params: {
+            amount: 10,
+            token: this.sessionToken,
+            type: "multiple",
+            category: this.categorySelected,
+            difficulty: this.difficultySelected,
+          },
+        })
+        .then((response) => {
+          commit("setQuestions", response.data.results);
         })
         .catch((error) => {
           console.log(error);

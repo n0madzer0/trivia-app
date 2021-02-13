@@ -16,13 +16,21 @@
           </select>
         </div>
         <div class="categorySelector" style="width: 200px">
-          <label for="selectCategories">Select Category:</label>
+          <label for="selectCategories">Select a Category:</label>
           <select id="selectCategories" name="categories">
-            <option disabled value="">--Choose category--</option>
-            <option v-for="(item, key) in categories" :key="key" :value="item.id">
+            <option disabled value="">--Choose a category--</option>
+            <option
+              v-for="(item, key) in categories"
+              :key="key"
+              :value="item.id"
+            >
               {{ item.name }}
             </option>
           </select>
+        </div>
+        <div class="nicknameInput">
+          <label for="nickname">Enter Nickname:</label><br />
+          <input id="nickname" type="text" />
         </div>
         <!-- <div class="sessionToken">
           <input type="checkbox" v-model="isChecked" />
@@ -39,7 +47,6 @@
 
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
-import { getSessionToken } from "@/services/TriviaApi";
 
 export default {
   methods: {
@@ -47,12 +54,11 @@ export default {
   },
   computed: {
     ...mapState([]),
-    ...mapGetters(["currentIndex", "categories"])
+    ...mapGetters(["currentIndex", "categories"]),
   },
   mounted() {
-    getSessionToken();
     this.getCategories();
-  }
+  },
 };
 </script>
 
@@ -65,6 +71,7 @@ export default {
   min-height: 400px;
   box-shadow: 0px 0px 50px 15px $color-4;
   transition: 0.3s;
+  border-radius: 6px;
   background-color: $color-3;
 
   &:hover {
@@ -72,17 +79,37 @@ export default {
   }
   .card-container {
     padding: 2px 16px;
+    display: flex;
+    flex-direction: column;
+    flex-flow: wrap;
+    height: 100%;
+
+    > * {
+      width: 100%;
+      padding: 10px;
+    }
 
     .card-header {
       border-bottom: 5px solid $color-2;
-      padding: 10px;
+      max-height: 50px;
+      justify-content: center;
     }
 
     .card-body {
-      padding: 10px;
     }
 
     .card-footer {
+      position: relative;
+
+      .next-button {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin-bottom: 20px;
+        margin-right: 10px;
+        padding: 10px;
+        border-radius: 6px;
+      }
     }
   }
 }

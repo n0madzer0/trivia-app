@@ -6,42 +6,6 @@ import axios from "axios";
 const baseUrl = "https://opentdb.com";
 const questionType = "multiple";
 
-//Token lasts for 6 hours
-//Using the same token ensures no duplicated questions
-function getSessionToken() {
-  return axios
-    .get(baseUrl + "/api_token.php", {
-      params: {
-        command: "request",
-      },
-    })
-    .then((response) => {
-      return response.data.token;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
-
-
-function getQuestions(token, amount) {
-  return axios
-    .get(baseUrl + "/api.php", {
-      params: {
-        amount: amount,
-        token: token,
-        type: questionType,
-      },
-    })
-    .then((response) => {
-      return response.data.results;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
-
-export { getSessionToken, getQuestions };
 
 
 

@@ -17,7 +17,6 @@
 
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
-import { getQuestions } from "@/services/TriviaApi";
 
 export default {
   data() {
@@ -25,7 +24,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["nextCard"]),
+    ...mapActions(["nextCard", "getQuestions"]),
     getQuestions() {
       const data = getQuestions("token", 10);
       if (data) {

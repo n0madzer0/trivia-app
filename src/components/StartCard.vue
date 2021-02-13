@@ -41,10 +41,10 @@ export default {
 <style lang="scss" scoped>
 .card-main {
   margin-top: 100px;
-  width: 600px;
-  min-width: 400px;
+  width: 300px;
+  min-width: 200px;
   height: 400px;
-  min-height: 400px;
+  min-height: 4300px;
   box-shadow: 0px 0px 50px 15px $color-4;
   transition: 0.3s;
   border-radius: 6px;
