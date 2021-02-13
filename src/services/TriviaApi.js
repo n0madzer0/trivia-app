@@ -2,9 +2,9 @@
 
 //https://opentdb.com/api.php?amount=10&category=20&difficulty=medium&type=multiple
 
-import axios from "axios";
-const baseUrl = "https://opentdb.com";
-const questionType = "multiple";
+// import axios from "axios";
+// const baseUrl = "https://opentdb.com";
+// const questionType = "multiple";
 
 
 

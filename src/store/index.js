@@ -70,6 +70,10 @@ export default createStore({
     submitAnswer({ commit }) {
       commit("incrementQuestionNumber");
     },
+    optionsNextCard({commit}) {
+      commit("incrementCurrentIndex");
+      this.getSessionToken();
+    },
     //Token lasts for 6 hours
     //Using the same token ensures no duplicated questions
     getSessionToken({ commit }) {

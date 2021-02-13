@@ -39,7 +39,7 @@
       </div>
       <div class="card-footer">
         <button @click="previousCard">Go back</button>
-        <button @click="nextCard">Lets gooooo</button>
+        <button @click="optionsNextCard">Lets gooooo</button>
       </div>
     </div>
   </div>
@@ -50,7 +50,7 @@ import { mapActions, mapGetters, mapState } from "vuex";
 
 export default {
   methods: {
-    ...mapActions(["previousCard", "nextCard", "getCategories"]),
+    ...mapActions(["previousCard", "optionsNextCard", "getCategories"]),
   },
   computed: {
     ...mapState([]),

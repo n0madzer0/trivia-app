@@ -25,12 +25,6 @@ export default {
   },
   methods: {
     ...mapActions(["nextCard", "getQuestions"]),
-    getQuestions() {
-      const data = getQuestions("token", 10);
-      if (data) {
-        return data;
-      }
-    }
   },
   computed: {
     ...mapState([]),
